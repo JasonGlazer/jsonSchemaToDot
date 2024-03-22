@@ -1,94 +1,171 @@
 digraph G {
-    size="7.5, 20";
-    rankdir=LR;
-  ASHRAE229 -> Transformer
-  ASHRAE229 -> Building
-  ASHRAE229 -> Calendar
-  ASHRAE229 -> Schedule
-  ASHRAE229 -> Weather
-  ASHRAE229 -> OverallSimulationOutputs
-  ASHRAE229 -> FluidLoop
-  ASHRAE229 -> ServiceWaterHeatingDistributionSystem
-  ASHRAE229 -> Pump
-  ASHRAE229 -> Boiler
-  ASHRAE229 -> Chiller
-  ASHRAE229 -> HeatRejection
-  ASHRAE229 -> ExternalFluidSource
-  Building -> BuildingSegment
-  Building -> Elevator
-  Building -> ExteriorLighting
-  Building -> Refrigeration
-  Building -> Schedule [color=red] 
-  BuildingSegment -> Zone
-  BuildingSegment -> HeatingVentilationAirConditioningSystem
-  Zone -> Space
-  Zone -> Surface
-  Zone -> Infiltration
-  Zone -> Schedule [color=red] 
-  Zone -> Schedule [color=red] 
-  Zone -> Terminal
-  Space -> InteriorLighting
-  Space -> MiscellaneousEquipment
-  Space -> Schedule [color=red] 
-  Space -> ServiceWaterHeatingUse
-  Infiltration -> Schedule [color=red] 
-  Surface -> Subsurface
-  Surface -> Zone [color=red] 
-  Surface -> Construction
-  Surface -> SurfaceOpticalProperties
-  Construction -> Material
-  Construction -> Material
-  InteriorLighting -> Schedule [color=red] 
-  MiscellaneousEquipment -> Schedule [color=red] 
-  Weather -> Schedule [color=red] 
-  Elevator -> Schedule [color=red] 
-  Elevator -> Schedule [color=red] 
-  Elevator -> Schedule [color=red] 
-  HeatingVentilationAirConditioningSystem -> HeatingSystem
-  HeatingVentilationAirConditioningSystem -> CoolingSystem
-  HeatingVentilationAirConditioningSystem -> HeatingSystem
-  HeatingSystem -> FluidLoop [color=red] 
-  CoolingSystem -> FluidLoop [color=red] 
-  CoolingSystem -> FluidLoop [color=red] 
-  FanSystem -> Fan
-  FanSystem -> Fan
-  FanSystem -> Fan
-  FanSystem -> Fan
-  FanSystem -> Schedule [color=red] 
-  FanSystem -> Schedule [color=red] 
-  Terminal -> HeatingVentilationAirConditioningSystem [color=red] 
-  Terminal -> FluidLoop [color=red] 
-  Terminal -> Fan
-  Terminal -> Schedule [color=red] 
-  FluidLoop -> FluidLoop
-  FluidLoop -> FluidLoopDesignAndControl
-  FluidLoop -> FluidLoopDesignAndControl
-  Pump -> FluidLoop [color=red] 
-  Pump -> ServiceWaterPiping [color=red] 
-  Boiler -> FluidLoop [color=red] 
-  Boiler -> BoilerOutputValidationPoint
-  Chiller -> FluidLoop [color=red] 
-  Chiller -> FluidLoop [color=red] 
-  Chiller -> ChillerCapacityValidationPoint
-  Chiller -> ChillerPowerValidationPoint
-  HeatRejection -> FluidLoop [color=red] 
-  ExternalFluidSource -> FluidLoop [color=red] 
-  ServiceWaterHeatingDistributionSystem -> Tank
-  ServiceWaterHeatingDistributionSystem -> ServiceWaterPiping
-  ServiceWaterHeatingDistributionSystem -> SolarThermal
-  ServiceWaterHeatingDistributionSystem -> Schedule [color=red] 
-  ServiceWaterHeatingDistributionSystem -> Schedule [color=red] 
-  ServiceWaterPiping -> Zone [color=red] 
-  ServiceWaterPiping -> ServiceWaterPiping
-  SolarThermal -> Tank
-  ServiceWaterHeatingEquipment -> ServiceWaterHeaterValidationPoint
-  ServiceWaterHeatingEquipment -> Zone [color=red] 
-  ServiceWaterHeatingEquipment -> Zone [color=red] 
-  ServiceWaterHeatingEquipment -> HeatPumpWaterHeaterCapacityValidationPoint
-  ServiceWaterHeatingEquipment -> HeatPumpWaterHeaterPowerValidationPoint
-  ServiceWaterHeatingEquipment -> Tank
-  Tank -> Zone [color=red] 
-  ServiceWaterHeatingUse -> ServiceWaterHeatingDistributionSystem [color=red] 
-  ServiceWaterHeatingUse -> Schedule [color=red] 
-  Refrigeration -> Schedule [color=red] 
+    size="10, 10";
+    ranksep="1.4";
+  RulesetProjectDescription -> Timestamp [arrowhead=empty color="darkviolet"]
+  RulesetProjectDescription[fontsize="32" shape="box" height="0.7"]
+  Timestamp[fontsize="32" shape="box" height="0.7"]
+  RulesetProjectDescription -> RulesetModelDescription [color="darkviolet"]
+  RulesetModelDescription[fontsize="32" shape="box" height="0.7"]
+  RulesetProjectDescription -> Calendar [arrowhead=empty color="cyan"]
+  Calendar[fontsize="32" shape="box" height="0.7"]
+  RulesetProjectDescription -> Weather [arrowhead=empty color="darkorange"]
+  Weather[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Transformer [color="green"]
+  Transformer[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Building [color="black"]
+  Building[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Schedule [color="brown"]
+  Schedule[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> FluidLoop [color="green"]
+  FluidLoop[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> ServiceWaterHeatingDistributionSystem [color="green"]
+  ServiceWaterHeatingDistributionSystem[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> ServiceWaterHeatingEquipment [color="darkorange"]
+  ServiceWaterHeatingEquipment[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Pump [color="darkorange"]
+  Pump[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Boiler [color="cyan"]
+  Boiler[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> Chiller [color="black"]
+  Chiller[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> HeatRejection [color="yellow"]
+  HeatRejection[fontsize="32" shape="box" height="0.7"]
+  RulesetModelDescription -> ExternalFluidSource [color="darkviolet"]
+  ExternalFluidSource[fontsize="32" shape="box" height="0.7"]
+  Building -> BuildingSegment [color="darkorange"]
+  BuildingSegment[fontsize="32" shape="box" height="0.7"]
+  Building -> Elevator [color="darkred"]
+  Elevator[fontsize="32" shape="box" height="0.7"]
+  Building -> ExteriorLighting [color="green"]
+  ExteriorLighting[fontsize="32" shape="box" height="0.7"]
+  Building -> RefrigeratedCase [color="blue"]
+  RefrigeratedCase[fontsize="32" shape="box" height="0.7"]
+  Building -> Schedule [style=dotted arrowhead=empty] 
+  BuildingSegment -> Zone [color="turquoise"]
+  Zone[fontsize="32" shape="box" height="0.7"]
+  BuildingSegment -> HeatingVentilatingAirConditioningSystem [color="blue"]
+  HeatingVentilatingAirConditioningSystem[fontsize="32" shape="box" height="0.7"]
+  Zone -> Space [color="firebrick"]
+  Space[fontsize="32" shape="box" height="0.7"]
+  Zone -> Surface [color="turquoise"]
+  Surface[fontsize="32" shape="box" height="0.7"]
+  Zone -> Infiltration [arrowhead=empty color="darkred"]
+  Infiltration[fontsize="32" shape="box" height="0.7"]
+  Zone -> Schedule [style=dotted arrowhead=empty] 
+  Zone -> Schedule [style=dotted arrowhead=empty] 
+  Zone -> Schedule [style=dotted arrowhead=empty] 
+  Zone -> Schedule [style=dotted arrowhead=empty] 
+  Zone -> Terminal [color="darkorange"]
+  Terminal[fontsize="32" shape="box" height="0.7"]
+  Zone -> ServiceWaterHeatingDistributionSystem [style=dotted arrowhead=empty] 
+  Zone -> Zone [style=dotted arrowhead=empty] 
+  Zone -> Fan [arrowhead=empty color="firebrick"]
+  Fan[fontsize="32" shape="box" height="0.7"]
+  Zone -> Schedule [style=dotted arrowhead=empty] 
+  Space -> InteriorLighting [color="blue"]
+  InteriorLighting[fontsize="32" shape="box" height="0.7"]
+  Space -> MiscellaneousEquipment [color="turquoise"]
+  MiscellaneousEquipment[fontsize="32" shape="box" height="0.7"]
+  Space -> Schedule [style=dotted arrowhead=empty] 
+  Space -> ServiceWaterHeatingUse [color="turquoise"]
+  ServiceWaterHeatingUse[fontsize="32" shape="box" height="0.7"]
+  Infiltration -> Schedule [style=dotted arrowhead=empty] 
+  Surface -> Subsurface [color="turquoise"]
+  Subsurface[fontsize="32" shape="box" height="0.7"]
+  Surface -> Zone [style=dotted arrowhead=empty] 
+  Surface -> Construction [arrowhead=empty color="darkviolet"]
+  Construction[fontsize="32" shape="box" height="0.7"]
+  Surface -> SurfaceOpticalProperties [arrowhead=empty color="cyan"]
+  SurfaceOpticalProperties[fontsize="32" shape="box" height="0.7"]
+  Construction -> Material [color="blue"]
+  Material[fontsize="32" shape="box" height="0.7"]
+  Construction -> Material [color="darkorange"]
+  InteriorLighting -> Schedule [style=dotted arrowhead=empty] 
+  MiscellaneousEquipment -> Schedule [style=dotted arrowhead=empty] 
+  MiscellaneousEquipment -> FluidLoop [style=dotted arrowhead=empty] 
+  MiscellaneousEquipment -> FluidLoop [style=dotted arrowhead=empty] 
+  Weather -> Schedule [style=dotted arrowhead=empty] 
+  Elevator -> Zone [style=dotted arrowhead=empty] 
+  Elevator -> Zone [style=dotted arrowhead=empty] 
+  Elevator -> Schedule [style=dotted arrowhead=empty] 
+  Elevator -> Schedule [style=dotted arrowhead=empty] 
+  Elevator -> Schedule [style=dotted arrowhead=empty] 
+  HeatingVentilatingAirConditioningSystem -> FanSystem [arrowhead=empty color="brown"]
+  FanSystem[fontsize="32" shape="box" height="0.7"]
+  HeatingVentilatingAirConditioningSystem -> HeatingSystem [arrowhead=empty color="darkred"]
+  HeatingSystem[fontsize="32" shape="box" height="0.7"]
+  HeatingVentilatingAirConditioningSystem -> CoolingSystem [arrowhead=empty color="darkorange"]
+  CoolingSystem[fontsize="32" shape="box" height="0.7"]
+  HeatingVentilatingAirConditioningSystem -> HeatingSystem [arrowhead=empty color="darkviolet"]
+  HeatingSystem -> FluidLoop [style=dotted arrowhead=empty] 
+  HeatingSystem -> FluidLoop [style=dotted arrowhead=empty] 
+  CoolingSystem -> FluidLoop [style=dotted arrowhead=empty] 
+  CoolingSystem -> FluidLoop [style=dotted arrowhead=empty] 
+  FanSystem -> Fan [color="darkorange"]
+  FanSystem -> Fan [color="black"]
+  FanSystem -> Fan [color="blue"]
+  FanSystem -> Fan [color="blue"]
+  FanSystem -> AirEconomizer [arrowhead=empty color="darkviolet"]
+  AirEconomizer[fontsize="32" shape="box" height="0.7"]
+  FanSystem -> AirEnergyRecovery [arrowhead=empty color="darkred"]
+  AirEnergyRecovery[fontsize="32" shape="box" height="0.7"]
+  FanSystem -> Schedule [style=dotted arrowhead=empty] 
+  FanSystem -> Schedule [style=dotted arrowhead=empty] 
+  Fan -> Zone [style=dotted arrowhead=empty] 
+  Fan -> FanOutputValidationPoint [color="firebrick"]
+  FanOutputValidationPoint[fontsize="32" shape="box" height="0.7"]
+  Terminal -> HeatingVentilatingAirConditioningSystem [style=dotted arrowhead=empty] 
+  Terminal -> FluidLoop [style=dotted arrowhead=empty] 
+  Terminal -> FluidLoop [style=dotted arrowhead=empty] 
+  Terminal -> Fan [arrowhead=empty color="brown"]
+  Terminal -> Schedule [style=dotted arrowhead=empty] 
+  FluidLoop -> FluidLoop [color="darkorange"]
+  FluidLoop -> FluidLoopDesignAndControl [arrowhead=empty color="darkred"]
+  FluidLoopDesignAndControl[fontsize="32" shape="box" height="0.7"]
+  FluidLoop -> FluidLoopDesignAndControl [arrowhead=empty color="darkorange"]
+  FluidLoopDesignAndControl -> Schedule [style=dotted arrowhead=empty] 
+  Pump -> FluidLoop [style=dotted arrowhead=empty] 
+  Pump -> ServiceWaterPiping [style=dotted arrowhead=empty] 
+  ServiceWaterPiping[fontsize="32" shape="box" height="0.7"]
+  Pump -> PumpOutputValidationPoint [color="darkred"]
+  PumpOutputValidationPoint[fontsize="32" shape="box" height="0.7"]
+  Boiler -> FluidLoop [style=dotted arrowhead=empty] 
+  Boiler -> BoilerOutputValidationPoint [color="cyan"]
+  BoilerOutputValidationPoint[fontsize="32" shape="box" height="0.7"]
+  Chiller -> FluidLoop [style=dotted arrowhead=empty] 
+  Chiller -> FluidLoop [style=dotted arrowhead=empty] 
+  Chiller -> ChillerCapacityValidationPoint [color="blue"]
+  ChillerCapacityValidationPoint[fontsize="32" shape="box" height="0.7"]
+  Chiller -> ChillerPowerValidationPoint [color="cyan"]
+  ChillerPowerValidationPoint[fontsize="32" shape="box" height="0.7"]
+  Chiller -> FluidLoop [style=dotted arrowhead=empty] 
+  HeatRejection -> FluidLoop [style=dotted arrowhead=empty] 
+  ExternalFluidSource -> FluidLoop [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingDistributionSystem -> Tank [color="turquoise"]
+  Tank[fontsize="32" shape="box" height="0.7"]
+  ServiceWaterHeatingDistributionSystem -> ServiceWaterPiping [color="cyan"]
+  ServiceWaterHeatingDistributionSystem -> Schedule [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingDistributionSystem -> Schedule [style=dotted arrowhead=empty] 
+  ServiceWaterPiping -> Zone [style=dotted arrowhead=empty] 
+  ServiceWaterPiping -> ServiceWaterPiping [color="black"]
+  SolarThermal -> Tank [arrowhead=empty color="darkred"]
+  SolarThermal[fontsize="32" shape="box" height="0.7"]
+  ServiceWaterHeatingEquipment -> ServiceWaterHeatingDistributionSystem [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingEquipment -> ServiceWaterHeaterValidationPoint [color="yellow"]
+  ServiceWaterHeaterValidationPoint[fontsize="32" shape="box" height="0.7"]
+  ServiceWaterHeatingEquipment -> Zone [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingEquipment -> Zone [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingEquipment -> HeatPumpWaterHeaterCapacityValidationPoint [color="darkred"]
+  HeatPumpWaterHeaterCapacityValidationPoint[fontsize="32" shape="box" height="0.7"]
+  ServiceWaterHeatingEquipment -> HeatPumpWaterHeaterPowerValidationPoint [color="black"]
+  HeatPumpWaterHeaterPowerValidationPoint[fontsize="32" shape="box" height="0.7"]
+  ServiceWaterHeatingEquipment -> Tank [arrowhead=empty color="green"]
+  ServiceWaterHeatingEquipment -> SolarThermal [color="cyan"]
+  ServiceWaterHeatingEquipment -> FluidLoop [style=dotted arrowhead=empty] 
+  Tank -> Zone [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingUse -> ServiceWaterHeatingDistributionSystem [style=dotted arrowhead=empty] 
+  ServiceWaterHeatingUse -> Schedule [style=dotted arrowhead=empty] 
+  ExteriorLighting -> Schedule [style=dotted arrowhead=empty] 
+  RefrigeratedCase -> Schedule [style=dotted arrowhead=empty] 
+  RefrigeratedCase -> Zone [style=dotted arrowhead=empty] 
 }
