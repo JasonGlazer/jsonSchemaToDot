@@ -2,6 +2,7 @@ import os
 import json
 import re
 import random
+import sys
 
 nodes = set()
 
@@ -13,19 +14,18 @@ def node_details(file, node):
         nodes.add(node)
     return
 
+# set up file names
+in_filename = sys.argv[1]
+in_no_ext = os.path.splitext(in_filename)[0]
+if in_no_ext.endswith('.schema'):
+    in_no_ext = os.path.splitext(in_no_ext)[0]
+out_filename = in_no_ext + '_connect.gv'
 
-with open('ASHRAE229connection.gv', 'w') as gv_file:
-# with open('ASHRAE229_RCT_project_connection.gv', 'w') as gv_file:
-# with open('ASHRAE229_RCT_software_connection.gv', 'w') as gv_file:
-# with open('Output2019ASHRAE901_connection.gv', 'w') as gv_file:
+with open(out_filename, 'w') as gv_file:
     gv_file.write('digraph G {\n')
     gv_file.write('    size="10, 10";\n')
     gv_file.write('    ranksep="1.4";\n')
-    # gv_file.write('    rankdir=LR;\n')
-    with open('ASHRAE229.schema.json') as json_file:
-#    with open('RCT_project_output_test_report.schema.json') as json_file:
-#    with open('RCT_software_output_test_report.schema.json') as json_file:
-#    with open('Output2019ASHRAE901.schema.json') as json_file:
+    with open(in_filename) as json_file:
         schema = json.load(json_file)
         # print(json.dumps(schema, indent=4))
         definitions = schema['definitions']
@@ -55,7 +55,6 @@ with open('ASHRAE229connection.gv', 'w') as gv_file:
                                     if "enum" not in definitions[ref]:
                                         # print(ref, '(list)')
                                         gv_file.write('  {} -> {} [color="{}"]\n'.format(data_group_name, ref, random.choice(colors)))
-                                        # gv_file.write("  {} -> {}  [color=blue headlabel=\"head\" taillabel=\"tail\"  ]\n".format(data_group_name, ref))
                                         node_details(gv_file, data_group_name)
                                         node_details(gv_file, ref)
                                 else:
@@ -67,7 +66,6 @@ with open('ASHRAE229connection.gv', 'w') as gv_file:
                             # print(data_element_name, constraint, constraint[1:-1])
                             constraint_strip = constraint[1:-1]
                             if constraint_strip in definitions:
-#                                gv_file.write("  {} -> {} [color=red arrowhead=empty] \n".format(data_group_name, constraint_strip))
                                 gv_file.write("  {} -> {} [style=dotted arrowhead=empty] \n".format(data_group_name, constraint_strip))
                                 node_details(gv_file, data_group_name)
                                 node_details(gv_file, constraint_strip)
@@ -76,11 +74,8 @@ with open('ASHRAE229connection.gv', 'w') as gv_file:
     gv_file.write('}\n')
 
 
-            #print(json.dumps(data_group_contents, indent=4))
-
-
 # at the command line running the following:
-#    dot -Tpdf ASHRAE229connection.gv -o ASHRAE229connection.pdf
-#    dot -Tpdf ASHRAE229_RCT_project_connection.gv -o ASHRAE229_RCT_project_connection.pdf
-#    dot -Tpdf ASHRAE229_RCT_software_connection.gv -o ASHRAE229_RCT_software_connection.pdf
-#    dot -Tpdf Output2019ASHRAE901_connection.gv -o Output2019ASHRAE901_connection.pdf
+#    dot -Tpdf ASHRAE229_connect.gv -o ASHRAE229_connect.pdf
+#    dot -Tpdf Output2019ASHRAE901_connect.gv -o Output2019ASHRAE901_connect.pdf
+#    dot -Tpdf RCT_project_output_test_report_connect.gv -o RCT_project_output_test_report_connect.pdf
+#    dot -Tpdf RCT_software_output_test_report_connect.gv -o RCT_software_output_test_report_connect.pdf
